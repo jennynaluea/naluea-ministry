@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Offer — Naluʻea Planetary Stewardship Ministry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --earth-deep:    #0f0a06;
+    --earth-mid:     #1c110a;
+    --earth-warm:    #2e1a0b;
+    --earth-bark:    #4a2c10;
+    --teal-deep:     #0d3d3a;
+    --teal-mid:      #156866;
+    --teal-bright:   #2ab0ac;
+    --teal-light:    #7dd4d1;
+    --gold:          #c9a96e;
+    --gold-soft:     #e8d5a3;
+    --cream:         #f5f0e8;
+    --cream-dim:     #d4cbbf;
+    --white-warm:    #fdf9f4;
+    --font-display:  'Cormorant Garamond', Georgia, serif;
+    --font-body:     'Jost', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--earth-deep);
+    color: var(--cream);
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4rem 3rem;
+    background: rgba(15, 10, 6, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(74, 44, 16, 0.3);
+  }
+  .nav-wordmark {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: var(--gold-soft);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover,
+  .nav-links a.active { color: var(--teal-light); }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    padding: 10rem 2rem 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--earth-bark), transparent);
+  }
+  .page-header-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.15;
+    background: radial-gradient(ellipse at 50% 100%, var(--teal-deep) 0%, transparent 65%);
+  }
+  .page-header-content {
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 1s ease 0.2s both;
+  }
+  .page-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--teal-bright);
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+  .page-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 300;
+    color: var(--white-warm);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  .page-title em { font-style: italic; color: var(--gold-soft); }
+  .page-intro {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--cream-dim);
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ── LAYOUT ── */
+  section { padding: 6rem 2rem; }
+  .container { max-width: 900px; margin: 0 auto; }
+  .container-narrow { max-width: 660px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--teal-bright);
+    margin-bottom: 1.4rem;
+    display: block;
+  }
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 300;
+    color: var(--white-warm);
+    margin-bottom: 1.2rem;
+    line-height: 1.25;
+  }
+  .section-heading em { font-style: italic; color: var(--gold-soft); }
+  .divider { width: 48px; height: 1px; background: var(--teal-mid); margin: 2rem 0; }
+  .body-text {
+    color: var(--cream-dim);
+    font-size: 0.95rem;
+    line-height: 1.9;
+    margin-bottom: 1.2rem;
+  }
+
+  /* ── SYMBOLIC ART ── */
+  .section-art {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .section-art svg { position: absolute; width: 100%; height: 100%; }
+  .offering-section,
+  .what-it-supports,
+  .why-give,
+  .faq-section { position: relative; }
+  .offering-section .container,
+  .what-it-supports .container,
+  .why-give .container-narrow,
+  .faq-section .container { position: relative; z-index: 1; }
+
+  /* ── OFFERING SECTION ── */
+  .offering-section {
+    background: var(--teal-deep);
+  }
+  .offering-section::before,
+  .offering-section::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; height: 1px;
+    background: linear-gradient(to right, transparent, var(--teal-bright), transparent);
+    opacity: 0.25;
+  }
+  .offering-section::before { top: 0; }
+  .offering-section::after  { bottom: 0; }
+
+  .offering-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .offering-quote {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--white-warm);
+    line-height: 1.55;
+    margin-bottom: 2rem;
+  }
+  .offering-sub {
+    font-size: 0.88rem;
+    color: var(--teal-light);
+    line-height: 1.8;
+    opacity: 0.8;
+  }
+
+  /* Zeffy embed placeholder */
+  .zeffy-container {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--teal-mid);
+    padding: 2.5rem;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+  }
+  .zeffy-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--teal-bright);
+    margin-bottom: 0.5rem;
+  }
+  .zeffy-note {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--cream-dim);
+    text-align: center;
+    line-height: 1.7;
+    max-width: 320px;
+  }
+  /* Replace .zeffy-container with your Zeffy embed iframe when ready */
+
+  /* ── WHAT IT SUPPORTS ── */
+  .what-it-supports {
+    background: var(--earth-mid);
+  }
+  .what-it-supports::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--earth-bark), transparent);
+  }
+  .supports-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--earth-bark);
+    border: 1px solid var(--earth-bark);
+    margin-top: 3rem;
+  }
+  .support-card {
+    background: var(--earth-mid);
+    padding: 2.2rem 1.8rem;
+    transition: background 0.3s ease;
+  }
+  .support-card:hover { background: var(--earth-warm); }
+  .support-glyph {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--teal-bright);
+    margin-bottom: 0.9rem;
+    opacity: 0.7;
+  }
+  .support-title {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--white-warm);
+    margin-bottom: 0.55rem;
+    line-height: 1.3;
+  }
+  .support-desc {
+    font-size: 0.85rem;
+    color: var(--cream-dim);
+    line-height: 1.8;
+  }
+
+  /* ── WHY GIVE ── */
+  .why-give {
+    background: var(--earth-deep);
+    text-align: center;
+  }
+  .why-give::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--teal-mid), transparent);
+  }
+  .reasons-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 3rem;
+    text-align: left;
+  }
+  .reason {
+    display: flex;
+    gap: 1.8rem;
+    align-items: flex-start;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(74,44,16,0.4);
+  }
+  .reason:last-child { border-bottom: none; padding-bottom: 0; }
+  .reason-mark {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--teal-bright);
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+    opacity: 0.7;
+  }
+  .reason-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--white-warm);
+    margin-bottom: 0.4rem;
+  }
+  .reason-desc {
+    font-size: 0.88rem;
+    color: var(--cream-dim);
+    line-height: 1.8;
+  }
+
+  /* ── FAQ ── */
+  .faq-section {
+    background: var(--earth-mid);
+  }
+  .faq-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--earth-bark), transparent);
+  }
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 2.5rem;
+  }
+  .faq-item {
+    border-bottom: 1px solid rgba(74,44,16,0.4);
+    padding: 2rem 0;
+  }
+  .faq-item:first-child { border-top: 1px solid rgba(74,44,16,0.4); }
+  .faq-q {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--white-warm);
+    margin-bottom: 0.8rem;
+  }
+  .faq-a {
+    font-size: 0.9rem;
+    color: var(--cream-dim);
+    line-height: 1.85;
+  }
+
+  /* ── BTN ── */
+  .btn {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.9rem 2.2rem;
+    transition: all 0.35s ease;
+    cursor: pointer;
+    border-radius: 0;
+  }
+  .btn-primary {
+    background: var(--teal-mid);
+    color: var(--white-warm);
+    border: 1px solid var(--teal-mid);
+  }
+  .btn-primary:hover { background: var(--teal-bright); border-color: var(--teal-bright); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--gold-soft);
+    border: 1px solid var(--gold);
+  }
+  .btn-ghost:hover { background: rgba(201,169,110,0.12); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--earth-deep);
+    border-top: 1px solid var(--earth-bark);
+    padding: 3.5rem 2rem;
+    text-align: center;
+  }
+  .footer-wordmark {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--gold-soft);
+    letter-spacing: 0.12em;
+    margin-bottom: 1rem;
+  }
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    list-style: none;
+    margin-bottom: 1.5rem;
+  }
+  .footer-links a {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--teal-light); }
+  .footer-address {
+    font-size: 0.78rem;
+    color: var(--earth-bark);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+  }
+  .footer-domain {
+    font-size: 0.72rem;
+    color: var(--teal-mid);
+    letter-spacing: 0.15em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .offering-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .supports-grid { grid-template-columns: 1fr; }
+    section { padding: 5rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-wordmark">Naluʻea Ministry</a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="donate.html" class="active">Offer</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-bg" aria-hidden="true"></div>
+  <div class="page-header-content">
+    <span class="page-eyebrow">An Offering to What Is Sacred</span>
+    <h1 class="page-title">
+      Your gift enters<br><em>a living field</em>
+    </h1>
+    <p class="page-intro">
+      This is not a transaction. It is an act of sacred reciprocity — a gift that does not stop moving.
+    </p>
+  </div>
+</div>
+
+<!-- OFFERING SECTION -->
+<section class="offering-section">
+  <div class="section-art" aria-hidden="true">
+    <svg viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <!-- Concentric ripples — gift entering still water -->
+      <circle cx="720" cy="300" r="280" stroke="#2ab0ac" stroke-width="0.9" fill="none" opacity="0.07"/>
+      <circle cx="720" cy="300" r="220" stroke="#2ab0ac" stroke-width="0.8" fill="none" opacity="0.06"/>
+      <circle cx="720" cy="300" r="160" stroke="#2ab0ac" stroke-width="0.7" fill="none" opacity="0.05"/>
+      <circle cx="720" cy="300" r="100" stroke="#2ab0ac" stroke-width="0.6" fill="none" opacity="0.05"/>
+      <circle cx="720" cy="300" r="50"  stroke="#2ab0ac" stroke-width="0.5" fill="none" opacity="0.04"/>
+      <!-- Star points -->
+      <circle cx="180" cy="100" r="1.5" fill="#c9a96e" opacity="0.25"/>
+      <circle cx="1260" cy="120" r="1.5" fill="#c9a96e" opacity="0.25"/>
+      <circle cx="400" cy="480" r="1" fill="#2ab0ac" opacity="0.2"/>
+      <circle cx="1040" cy="460" r="1" fill="#2ab0ac" opacity="0.2"/>
+    </svg>
+  </div>
+  <div class="container">
+    <div class="offering-inner">
+      <div>
+        <span class="section-label">Your offering</span>
+        <p class="offering-quote">
+          "An Offering to What Is Sacred is an act of sacred reciprocity — a gift that does not stop moving."
+        </p>
+        <p class="offering-sub">
+          Your offering supports ceremony, circle, and the deep listening that must come before anything else is built. It flows into the forming of our Council of Stewards, into children's spiritual formation, into the consecration of land and water, and outward into the communities and young people already tending what wants to emerge.
+        </p>
+        <br><br>
+        <p class="offering-sub">
+          The Ministry circulates what it receives — in the spirit of the sacred reciprocity that governs all true giving.
+        </p>
+      </div>
+      <div>
+        <!-- ZEFFY EMBED -->
+        <div>
+          <div data-zeffy-embed data-form-url="/embed/donation-form/an-offering-to-what-is-sacred"></div>
+          <div data-zeffy-embed-fallback style="display:none;">
+            <div style="position:relative;overflow:hidden;height:450px;width:100%;"><iframe title='Donation form powered by Zeffy' style='position: absolute; border: 0; top:0;left:0;bottom:0;right:0;width:100%;height:100%' src='https://www.zeffy.com/embed/donation-form/an-offering-to-what-is-sacred' allowpaymentrequest allowTransparency="true"></iframe></div>
+          </div>
+          <script
+            src="https://www.zeffy.com/embed/v2/zeffy-embed.js"
+            onerror="document.querySelectorAll('[data-zeffy-embed-fallback]').forEach(function(el){el.style.display='block';});">
+          <\/script>
+        </div>
+        <!-- END ZEFFY EMBED -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IT SUPPORTS -->
+<section class="what-it-supports">
+  <div class="section-art" aria-hidden="true">
+    <svg viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <!-- Root forms corners -->
+      <path d="M0 600 C70 552 118 520 162 482" stroke="#2e1a0b" stroke-width="2.5" fill="none" opacity="0.45"/>
+      <path d="M0 600 C90 565 142 535 188 498" stroke="#3d2410" stroke-width="1.8" fill="none" opacity="0.3"/>
+      <path d="M1440 600 C1370 552 1322 520 1278 482" stroke="#2e1a0b" stroke-width="2.5" fill="none" opacity="0.45"/>
+      <path d="M1440 600 C1350 565 1298 535 1252 498" stroke="#3d2410" stroke-width="1.8" fill="none" opacity="0.3"/>
+      <!-- Mycelial threads -->
+      <path d="M0 320 C180 305 360 318 540 302 C720 286 900 300 1080 285 C1260 270 1380 282 1440 275" stroke="#1c110a" stroke-width="1" fill="none" opacity="0.5"/>
+      <path d="M0 350 C200 336 400 348 600 333 C800 318 1000 330 1200 316 C1340 306 1400 312 1440 308" stroke="#1c110a" stroke-width="0.8" fill="none" opacity="0.38"/>
+    </svg>
+  </div>
+  <div class="container">
+    <span class="section-label">What your offering supports</span>
+    <h2 class="section-heading">Where your gift <em>flows</em></h2>
+    <div class="supports-grid">
+      <div class="support-card">
+        <div class="support-glyph">✦</div>
+        <h3 class="support-title">Seasonal Ceremony & Sacred Gathering</h3>
+        <p class="support-desc">The four threshold ceremonies each year, the monthly circles, the spaces where community remembers what it means to live in right relationship.</p>
+      </div>
+      <div class="support-card">
+        <div class="support-glyph">∿</div>
+        <h3 class="support-title">Women's Circles & Children's Formation</h3>
+        <p class="support-desc">Sacred containers where the feminine is restored to its sacred function, and where children are held as carriers of divine remembrance.</p>
+      </div>
+      <div class="support-card">
+        <div class="support-glyph">⌾</div>
+        <h3 class="support-title">Consecration of Land & Water</h3>
+        <p class="support-desc">Ritual blessing of specific places, honoring the living intelligence of the Earth and the sacred obligations of those who tend it.</p>
+      </div>
+      <div class="support-card">
+        <div class="support-glyph">◎</div>
+        <h3 class="support-title">The Forming of the Council of Stewards</h3>
+        <p class="support-desc">The Ministry is in sacred process of gathering its ecclesiastical circle — indigenous elders and young people with old souls. Your gift supports the relational and ceremonial conditions that make this gathering possible.</p>
+      </div>
+      <div class="support-card">
+        <div class="support-glyph">❧</div>
+        <h3 class="support-title">Deep Listening Before Action</h3>
+        <p class="support-desc">The grief tending, intergenerational dialogue, and sensing of what is truly alive — work that has never had a funding home. Your gift makes it one.</p>
+      </div>
+      <div class="support-card">
+        <div class="support-glyph">✧</div>
+        <h3 class="support-title">Flow Funding into Community & Youth</h3>
+        <p class="support-desc">A portion of every gift flows outward — into communities and into the hands of young people already building what wants to emerge. The Ministry circulates what it receives.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY GIVE -->
+<section class="why-give">
+  <div class="section-art" aria-hidden="true">
+    <svg viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <!-- Faint spiral center -->
+      <path d="M720 300 C720 270 738 252 758 252 C778 252 796 270 796 290 C796 316 776 336 750 340 C716 344 688 324 684 298 C679 264 700 238 728 232" stroke="#156866" stroke-width="1" fill="none" opacity="0.12"/>
+      <!-- Gold star scatter -->
+      <circle cx="160" cy="80"  r="1.5" fill="#c9a96e" opacity="0.22"/>
+      <circle cx="520" cy="55"  r="1"   fill="#c9a96e" opacity="0.18"/>
+      <circle cx="920" cy="65"  r="1.5" fill="#c9a96e" opacity="0.22"/>
+      <circle cx="1280" cy="85" r="1"   fill="#c9a96e" opacity="0.18"/>
+      <circle cx="340" cy="520" r="1"   fill="#2ab0ac" opacity="0.15"/>
+      <circle cx="1100" cy="510" r="1"  fill="#2ab0ac" opacity="0.15"/>
+    </svg>
+  </div>
+  <div class="container-narrow">
+    <span class="section-label" style="display:block; text-align:center;">Why give</span>
+    <h2 class="section-heading" style="text-align:center;">
+      Sacred reciprocity<br><em>in motion</em>
+    </h2>
+    <div class="reasons-list">
+      <div class="reason">
+        <span class="reason-mark">✦</span>
+        <div>
+          <p class="reason-title">Enter a living field</p>
+          <p class="reason-desc">This work does not grow from a single source. It grows through the participation of those who feel it as their own. Your gift makes you part of what is being built.</p>
+        </div>
+      </div>
+      <div class="reason">
+        <span class="reason-mark">✦</span>
+        <div>
+          <p class="reason-title">Support what cannot be measured but must be sustained</p>
+          <p class="reason-desc">Ceremony. Relationship. The slow cultivation of trust across generations. The deep listening that must come before anything else is built. These are the foundations everything else rests on — and they have never had a funding home.</p>
+        </div>
+      </div>
+      <div class="reason">
+        <span class="reason-mark">✦</span>
+        <div>
+          <p class="reason-title">Help restore coherence</p>
+          <p class="reason-desc">What is needed already exists — in communities, in the wisdom of elders, in the clarity of the young. Your support helps it find itself, strengthen, and grow.</p>
+        </div>
+      </div>
+      <div class="reason">
+        <span class="reason-mark">✦</span>
+        <div>
+          <p class="reason-title">Be part of the sacred reciprocity</p>
+          <p class="reason-desc">In this gathering place, giving is understood as a spiritual act — not transaction, but participation in the flow of life. Give what you are called to give. Every offering enters a living field.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="section-art" aria-hidden="true">
+    <svg viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <!-- Weaving threads -->
+      <path d="M0 180 C240 162 480 178 720 164 C960 150 1200 166 1440 152" stroke="#c9a96e" stroke-width="0.7" fill="none" opacity="0.08"/>
+      <path d="M0 210 C240 228 480 212 720 226 C960 240 1200 226 1440 238" stroke="#2ab0ac" stroke-width="0.7" fill="none" opacity="0.08"/>
+      <!-- Root whispers -->
+      <path d="M0 700 C55 660 92 632 128 598" stroke="#2e1a0b" stroke-width="2" fill="none" opacity="0.3"/>
+      <path d="M1440 700 C1385 658 1348 630 1312 596" stroke="#2e1a0b" stroke-width="2" fill="none" opacity="0.3"/>
+    </svg>
+  </div>
+  <div class="container-narrow">
+    <span class="section-label">Questions</span>
+    <h2 class="section-heading">Frequently asked</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <p class="faq-q">Is my donation tax-deductible?</p>
+        <p class="faq-a">Yes. The Naluʻea Planetary Stewardship Ministry is a registered religious nonprofit. Donations are tax-deductible to the extent permitted by law. You will receive a receipt for your records.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Where does my donation go?</p>
+        <p class="faq-a">Your contribution supports the living religious and ceremonial work of the Ministry: sacred gatherings, seasonal ceremonies, women's circles, children's spiritual formation circles, the consecration of land and water, and the forming of the Council of Stewards. It also supports the deep relational and listening work that is the spiritual foundation of all that the Ministry tends.</p>
+        <br>
+        <p class="faq-a">Your gift flows outward — into communities, into the hands of young people already building what wants to emerge, and into the restoration of land and water. The Ministry supports what is already working: the people, the places, and the practices actively restoring life and strengthening the fabric of community rooted in right relationship with the Earth.</p>
+        <br>
+        <p class="faq-a">The Ministry circulates what it receives — in the spirit of sacred reciprocity that governs all true giving.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Can I volunteer or get more involved?</p>
+        <p class="faq-a">Yes. This work is not built by any one person — it grows through those who feel the call. We welcome your presence, your gifts, and your participation. Reach out through the contact page and we will hold your inquiry with care.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Do you accept in-kind donations or offerings of land?</p>
+        <p class="faq-a">We may receive in-kind contributions aligned with the Ministry's religious mission. If you feel called to offer something — including in conversation about land, place-based stewardship, or sacred partnership — we invite you to reach out. These conversations are held slowly, with care, and in alignment with the spiritual principles that guide this work.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Can I give in honor or memory of someone?</p>
+        <p class="faq-a">Yes. A gift made in love — for someone living or passed — is received with reverence. Please include a note if you would like us to hold that dedication in ceremony.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-wordmark">Naluʻea Planetary Stewardship Ministry</p>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="privacy.html">Privacy</a></li>
+  </ul>
+  <p class="footer-address">1621 Central Ave, #8450 · Cheyenne, WY 82001 · info@naluea.com</p>
+  <p class="footer-domain">nalueaministry.earth · 2026</p>
+</footer>
+
+</body>
+</html>

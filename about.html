@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Naluʻea Planetary Stewardship Ministry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --earth-deep:    #0f0a06;
+    --earth-mid:     #1c110a;
+    --earth-warm:    #2e1a0b;
+    --earth-bark:    #4a2c10;
+    --teal-deep:     #0d3d3a;
+    --teal-mid:      #156866;
+    --teal-bright:   #2ab0ac;
+    --teal-light:    #7dd4d1;
+    --gold:          #c9a96e;
+    --gold-soft:     #e8d5a3;
+    --cream:         #f5f0e8;
+    --cream-dim:     #d4cbbf;
+    --white-warm:    #fdf9f4;
+    --font-display:  'Cormorant Garamond', Georgia, serif;
+    --font-body:     'Jost', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--earth-deep);
+    color: var(--cream);
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4rem 3rem;
+    background: rgba(15, 10, 6, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(74, 44, 16, 0.3);
+  }
+  .nav-wordmark {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: var(--gold-soft);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover,
+  .nav-links a.active { color: var(--teal-light); }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    padding: 10rem 2rem 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--earth-bark), transparent);
+  }
+  /* subtle water bg for header */
+  .page-header-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.18;
+    background: radial-gradient(ellipse at 50% 80%, var(--teal-deep) 0%, transparent 70%);
+  }
+  .page-header-content {
+    position: relative;
+    z-index: 1;
+  }
+  .page-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--teal-bright);
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+  .page-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 300;
+    color: var(--white-warm);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  .page-title em {
+    font-style: italic;
+    color: var(--gold-soft);
+  }
+  .page-intro {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--cream-dim);
+    max-width: 580px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 2rem; }
+  .container { max-width: 900px; margin: 0 auto; }
+  .container-narrow { max-width: 660px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--teal-bright);
+    margin-bottom: 1.4rem;
+    display: block;
+  }
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 300;
+    color: var(--white-warm);
+    margin-bottom: 1.2rem;
+    line-height: 1.25;
+  }
+  .section-heading em { font-style: italic; color: var(--gold-soft); }
+
+  .divider {
+    width: 48px;
+    height: 1px;
+    background: var(--teal-mid);
+    margin: 2rem 0;
+  }
+  .divider-center {
+    width: 48px;
+    height: 1px;
+    background: var(--teal-mid);
+    margin: 2rem auto;
+  }
+
+  .body-text {
+    color: var(--cream-dim);
+    font-size: 0.95rem;
+    line-height: 1.9;
+    margin-bottom: 1.2rem;
+  }
+  .body-text strong {
+    color: var(--gold-soft);
+    font-weight: 400;
+  }
+
+  /* ── NAME SECTION ── */
+  .name-section {
+    background: var(--teal-deep);
+    position: relative;
+    overflow: hidden;
+  }
+  .name-section::before,
+  .name-section::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--teal-bright), transparent);
+    opacity: 0.3;
+  }
+  .name-section::before { top: 0; }
+  .name-section::after  { bottom: 0; }
+
+  .name-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .name-pronunciation {
+    font-family: var(--font-display);
+    font-size: 3.2rem;
+    font-weight: 300;
+    color: var(--white-warm);
+    line-height: 1.1;
+    margin-bottom: 0.6rem;
+  }
+  .name-phonetic {
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: var(--teal-light);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+  .name-roots {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .name-root {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+  }
+  .name-root-word {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--gold-soft);
+    min-width: 60px;
+    padding-top: 0.1rem;
+  }
+  .name-root-meaning {
+    font-size: 0.88rem;
+    color: var(--cream-dim);
+    line-height: 1.7;
+  }
+  .name-body .body-text {
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+  .name-essence {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--white-warm);
+    line-height: 1.6;
+    border-left: 2px solid var(--teal-bright);
+    padding-left: 1.8rem;
+    margin: 2rem 0;
+  }
+  .name-closing {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--teal-light);
+    margin-top: 1.5rem;
+  }
+
+  /* ── MISSION ── */
+  .mission {
+    background: var(--earth-mid);
+    position: relative;
+  }
+  .mission::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--earth-bark), transparent);
+  }
+  .mission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  /* ── FAITH PILLARS ── */
+  .faith-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    margin-top: 0.5rem;
+  }
+  .faith-item {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+  }
+  .faith-mark {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--teal-bright);
+    flex-shrink: 0;
+    margin-top: 0.6rem;
+  }
+  .faith-text {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--cream-dim);
+    line-height: 1.6;
+  }
+
+  /* ── WHAT WE DO ── */
+  .what-we-do {
+    background: var(--earth-deep);
+    position: relative;
+  }
+  .what-we-do::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--teal-mid), transparent);
+  }
+  .practices-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--earth-bark);
+    border: 1px solid var(--earth-bark);
+    margin-top: 3rem;
+  }
+  .practice-card {
+    background: var(--earth-mid);
+    padding: 2.5rem 2rem;
+    transition: background 0.3s ease;
+  }
+  .practice-card:hover { background: var(--earth-warm); }
+  .practice-glyph {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    color: var(--teal-bright);
+    margin-bottom: 1rem;
+    opacity: 0.7;
+  }
+  .practice-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--white-warm);
+    margin-bottom: 0.6rem;
+  }
+  .practice-desc {
+    font-size: 0.87rem;
+    color: var(--cream-dim);
+    line-height: 1.8;
+  }
+
+  /* ── FAITH & INDEPENDENCE ── */
+  .independence {
+    background: var(--earth-mid);
+    position: relative;
+  }
+  .independence::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--earth-bark), transparent);
+  }
+  .independence-inner {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .independence-quote {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--cream-dim);
+    line-height: 1.65;
+    border-left: 2px solid var(--gold);
+    padding-left: 2rem;
+    margin-top: 2rem;
+  }
+
+  /* ── SUPPORT ── */
+  .support {
+    background: var(--teal-deep);
+    text-align: center;
+    position: relative;
+  }
+  .support::before,
+  .support::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--teal-bright), transparent);
+    opacity: 0.25;
+  }
+  .support::before { top: 0; }
+  .support::after  { bottom: 0; }
+  .support-body {
+    font-size: 0.95rem;
+    color: var(--cream-dim);
+    line-height: 1.9;
+    margin-bottom: 1.2rem;
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .support-body strong { color: var(--gold-soft); font-weight: 400; }
+
+  .btn {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.9rem 2.2rem;
+    transition: all 0.35s ease;
+    cursor: pointer;
+    border-radius: 0;
+  }
+  .btn-primary {
+    background: var(--teal-mid);
+    color: var(--white-warm);
+    border: 1px solid var(--teal-mid);
+  }
+  .btn-primary:hover {
+    background: var(--teal-bright);
+    border-color: var(--teal-bright);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--gold-soft);
+    border: 1px solid var(--gold);
+    margin-left: 1rem;
+  }
+  .btn-ghost:hover { background: rgba(201,169,110,0.12); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--earth-deep);
+    border-top: 1px solid var(--earth-bark);
+    padding: 3.5rem 2rem;
+    text-align: center;
+  }
+  .footer-wordmark {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--gold-soft);
+    letter-spacing: 0.12em;
+    margin-bottom: 1rem;
+  }
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    list-style: none;
+    margin-bottom: 1.5rem;
+  }
+  .footer-links a {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--teal-light); }
+  .footer-address {
+    font-size: 0.78rem;
+    color: var(--earth-bark);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+  }
+  .footer-domain {
+    font-size: 0.72rem;
+    color: var(--teal-mid);
+    letter-spacing: 0.15em;
+  }
+
+
+  /* ── SYMBOLIC BACKGROUND ART ── */
+  .section-art {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .section-art svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  .name-section .container,
+  .mission .container,
+  .what-we-do .container,
+  .independence .container,
+  .support .container-narrow {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .name-inner,
+    .mission-grid,
+    .independence-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .practices-grid { grid-template-columns: 1fr; }
+    section { padding: 5rem 1.5rem; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .page-header-content { animation: fadeUp 1s ease 0.2s both; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-wordmark">Naluʻea Ministry</a>
+  <ul class="nav-links">
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="donate.html">Offer</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-bg" aria-hidden="true"></div>
+  <div class="page-header-content">
+    <span class="page-eyebrow">About the Ministry</span>
+    <h1 class="page-title">
+      A sacred gathering place<br>for those who feel <em>this call</em>
+    </h1>
+    <p class="page-intro">
+      Rooted in the knowing that the Earth is living and sacred — that stewardship is a spiritual practice, and that ceremony is governance in its most truthful form.
+    </p>
+  </div>
+</div>
+
+<!-- NAME SECTION -->
+<section class="name-section">
+  <div class="section-art" aria-hidden="true">
+    <svg viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <!-- Large background spiral — the nalu -->
+      <path d="M720 350 C720 298 756 262 794 262 C832 262 868 298 868 336 C868 386 832 422 782 428 C718 436 662 398 656 344 C648 278 686 222 746 210 C814 196 876 234 890 302" stroke="#2ab0ac" stroke-width="1.5" fill="none" opacity="0.1"/>
+      <path d="M720 350 C720 318 742 296 766 296 C790 296 812 318 812 342 C812 372 788 396 758 400 C718 404 686 380 682 350" stroke="#2ab0ac" stroke-width="1" fill="none" opacity="0.08"/>
+      <!-- Womb circle — amnion reference -->
+      <circle cx="300" cy="350" r="160" stroke="#2ab0ac" stroke-width="0.8" fill="none" opacity="0.06"/>
+      <circle cx="300" cy="350" r="120" stroke="#2ab0ac" stroke-width="0.6" fill="none" opacity="0.05"/>
+      <circle cx="300" cy="350" r="80" stroke="#2ab0ac" stroke-width="0.5" fill="none" opacity="0.04"/>
+      <!-- Wave lines right side -->
+      <path d="M900 180 C980 165 1060 178 1140 168 C1220 158 1320 170 1440 160" stroke="#2ab0ac" stroke-width="0.8" fill="none" opacity="0.12"/>
+      <path d="M900 210 C980 195 1060 208 1140 198 C1220 188 1320 200 1440 190" stroke="#2ab0ac" stroke-width="0.7" fill="none" opacity="0.09"/>
+      <path d="M900 240 C980 225 1060 238 1140 228 C1220 218 1320 230 1440 220" stroke="#2ab0ac" stroke-width="0.6" fill="none" opacity="0.07"/>
+      <!-- Sacred star points -->
+      <circle cx="120" cy="120" r="1.5" fill="#c9a96e" opacity="0.3"/>
+      <circle cx="1300" cy="100" r="1.5" fill="#c9a96e" opacity="0.28"/>
+      <circle cx="1380" cy="300" r="1" fill="#2ab0ac" opacity="0.2"/>
+      <circle cx="80" cy="500" r="1" fill="#2ab0ac" opacity="0.2"/>
+    </svg>
+  </div>
+  <div class="container">
+    <div class="name-inner">
+      <div>
+        <span class="section-label">The meaning of her name</span>
+        <p class="name-pronunciation">Naluʻea</p>
+        <p class="name-phonetic">na · loo · AY · ah</p>
+        <div class="name-roots">
+          <div class="name-root">
+            <span class="name-root-word">Nalu</span>
+            <span class="name-root-meaning">Wave, surf — the cyclical return of water to shore. The force that shapes coastlines. The rhythm that reminds us nothing is ever truly still.</span>
+          </div>
+          <div class="name-root">
+            <span class="name-root-word">Nalu</span>
+            <span class="name-root-meaning">To ponder, reflect, meditate — to become still enough to perceive what lies beneath the surface. A mind at rest. A field able to receive.</span>
+          </div>
+          <div class="name-root">
+            <span class="name-root-word">Nalu</span>
+            <span class="name-root-meaning">Amnion — the sacred fluid of the womb. The water that surrounds and protects life before it takes form.</span>
+          </div>
+          <div class="name-root">
+            <span class="name-root-word">ʻEa</span>
+            <span class="name-root-meaning">Sovereignty. Life. Breath. The animating force that gives rise to being.</span>
+          </div>
+        </div>
+      </div>
+      <div class="name-body">
+        <p class="body-text">Together, Naluʻea is the living field where life is sensed before it is shaped.</p>
+        <div class="name-essence">
+          The wave that listens.<br>
+          The womb that holds.<br>
+          The breath through which sovereignty becomes form.
+        </div>
+        <p class="body-text">She is the threshold between what has been and what is not yet born — the place where remembering happens before action, where alignment is felt before anything moves.</p>
+        <p class="body-text">This Ministry carries her name not as a symbol, but as a living orientation. Nothing here is rushed. Nothing is imposed. What emerges, emerges in right relationship.</p>
+        <p class="name-closing">In this way, Naluʻea is not only a name — but a way of being.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission">
+  <div class="section-art" aria-hidden="true">
+    <svg viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <!-- Root network bottom -->
+      <path d="M0 700 C80 645 140 610 200 568 C240 540 275 515 310 485" stroke="#2e1a0b" stroke-width="3" fill="none" opacity="0.5"/>
+      <path d="M0 700 C100 660 165 628 225 588 C265 560 295 532 328 500" stroke="#3d2410" stroke-width="2" fill="none" opacity="0.35"/>
+      <path d="M60 700 C130 662 185 634 240 596" stroke="#2e1a0b" stroke-width="1.5" fill="none" opacity="0.28"/>
+      <path d="M1440 700 C1360 648 1300 615 1240 572" stroke="#2e1a0b" stroke-width="2.5" fill="none" opacity="0.45"/>
+      <path d="M1440 700 C1370 658 1315 625 1258 584" stroke="#3d2410" stroke-width="1.8" fill="none" opacity="0.3"/>
+      <path d="M1380 700 C1320 662 1270 634 1218 596" stroke="#2e1a0b" stroke-width="1.4" fill="none" opacity="0.22"/>
+      <!-- Central root branching up -->
+      <path d="M720 700 C710 650 698 618 685 580 C672 545 658 515 642 482" stroke="#2e1a0b" stroke-width="2" fill="none" opacity="0.3"/>
+      <path d="M720 700 C730 652 742 620 756 582 C768 547 782 518 796 485" stroke="#2e1a0b" stroke-width="1.8" fill="none" opacity="0.28"/>
+      <path d="M720 700 C720 660 718 630 715 595" stroke="#3d2410" stroke-width="1.5" fill="none" opacity="0.25"/>
+      <!-- Mycelial threads -->
+      <path d="M0 400 C180 382 360 396 540 378 C720 360 900 374 1080 358 C1260 342 1380 355 1440 348" stroke="#1c110a" stroke-width="1" fill="none" opacity="0.5"/>
+      <path d="M0 430 C200 412 400 426 600 408 C800 390 1000 404 1200 388 C1340 376 1400 382 1440 378" stroke="#1c110a" stroke-width="0.8" fill="none" opacity="0.38"/>
+    </svg>
+  </div>
+  <div class="container">
+    <div class="mission-grid">
+      <div>
+        <span class="section-label">Our mission</span>
+        <h2 class="section-heading">
+          Devoted to the sacred<br>stewardship of <em>Earth</em><br>and the elevation of humanity
+        </h2>
+        <div class="divider"></div>
+        <p class="body-text">
+          The Naluʻea Planetary Stewardship Ministry is a non-denominational, interfaith religious body. We are established in the knowing that the Earth is living and sacred, that stewardship is a spiritual practice, and that the balance of Divine Feminine and Divine Masculine is holy.
+        </p>
+        <p class="body-text">
+          We come together in ceremony, in prayer, in reflection, and in shared commitment. We hold space for the remembering that moves through all traditions and belongs to none alone.
+        </p>
+        <p class="body-text">
+          Here, we honor the wisdom of the past, the needs of the present, and the rights of the future. The wisdom of elders and the vision of the young are both essential. The Light Child within every being carries what this moment needs.
+        </p>
+        <p class="body-text">
+          <strong>We are helping what already exists come into coherence.</strong>
+        </p>
+      </div>
+      <div>
+        <span class="section-label">What we believe</span>
+        <div class="faith-list">
+          <div class="faith-item">
+            <div class="faith-mark"></div>
+            <p class="faith-text">The Earth is living and sacred.</p>
+          </div>
+          <div class="faith-item">
+            <div class="faith-mark"></div>
+            <p class="faith-text">Stewardship is a spiritual practice.</p>
+          </div>
+          <div class="faith-item">
+            <div class="faith-mark"></div>
+            <p class="faith-text">The balance of Divine Feminine and Divine Masculine is holy.</p>
+          </div>
+          <div class="faith-item">
+            <div class="faith-mark"></div>
+            <p class="faith-text">The Light Child within every being carries divine remembrance.</p>
+          </div>
+          <div class="faith-item">
+            <div class="faith-mark"></div>
+            <p class="faith-text">Regeneration, reciprocity, and right relationship are sacred obligations.</p>
+          </div>
+          <div class="faith-item">
+            <div class="faith-mark"></div>
+            <p class="faith-text">Ceremony is governance in spiritual form.</p>
+          </div>
+          <div class="faith-item">
+            <div class="faith-mark"></div>
+            <p class="faith-text">Regenerative action is a form of prayer.</p>
+          </div>
+          <div class="faith-item">
+            <div class="faith-mark"></div>
+            <p class="faith-text">Sacred reciprocity governs all flows of life.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section class="what-we-do">
+  <div class="container">
+    <span class="section-label" style="text-align:center; display:block;">What we do</span>
+    <h2 class="section-heading" style="text-align:center;">
+      We gather. We tend. We <em>remember.</em>
+    </h2>
+    <p style="text-align:center; font-family:var(--font-display); font-style:italic; color:var(--cream-dim); font-size:1.1rem; max-width:560px; margin:0 auto;">
+      Through ceremony, circle, and shared practice — across seasons, across generations, across every tradition that converges in this moment.
+    </p>
+    <div class="practices-grid">
+      <div class="practice-card">
+        <div class="practice-glyph">✦</div>
+        <h3 class="practice-title">Seasonal Sacred Ceremony</h3>
+        <p class="practice-desc">Four threshold ceremonies each year, honoring the rhythms of the Earth and calling the community into alignment with what is alive.</p>
+      </div>
+      <div class="practice-card">
+        <div class="practice-glyph">◯</div>
+        <h3 class="practice-title">Monthly Gatherings</h3>
+        <p class="practice-desc">Spaces for reflection, prayer, teaching, and the cultivation of community rooted in right relationship — virtual and in place.</p>
+      </div>
+      <div class="practice-card">
+        <div class="practice-glyph">∿</div>
+        <h3 class="practice-title">Women's Circles</h3>
+        <p class="practice-desc">Sacred containers for the restoration of feminine wisdom, relational healing, and spiritual depth.</p>
+      </div>
+      <div class="practice-card">
+        <div class="practice-glyph">✧</div>
+        <h3 class="practice-title">Children's Spiritual Formation</h3>
+        <p class="practice-desc">Where the young are welcomed as carriers of divine remembrance — held in ceremony and in love, given the conditions to know who they already are.</p>
+      </div>
+      <div class="practice-card">
+        <div class="practice-glyph">⌾</div>
+        <h3 class="practice-title">Consecration of Land & Water</h3>
+        <p class="practice-desc">Ritual blessing of specific places, honoring the living intelligence of the Earth and the sacred obligations of those who tend it.</p>
+      </div>
+      <div class="practice-card">
+        <div class="practice-glyph">❧</div>
+        <h3 class="practice-title">Deep Listening & Intergenerational Dialogue</h3>
+        <p class="practice-desc">The ceremonial and relational field that must come before anything else is built — where elder memory meets the vision of the young.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAITH & INDEPENDENCE -->
+<section class="independence">
+  <div class="section-art" aria-hidden="true">
+    <svg viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <!-- Weaving thread forms — divine masculine/feminine interplay -->
+      <path d="M0 200 C180 180 360 220 540 195 C720 170 900 205 1080 185 C1260 165 1380 192 1440 180" stroke="#c9a96e" stroke-width="0.8" fill="none" opacity="0.1"/>
+      <path d="M0 230 C180 250 360 215 540 235 C720 255 900 225 1080 242 C1260 258 1380 235 1440 248" stroke="#2ab0ac" stroke-width="0.8" fill="none" opacity="0.1"/>
+      <path d="M0 260 C180 240 360 275 540 255 C720 235 900 265 1080 248 C1260 232 1380 255 1440 244" stroke="#c9a96e" stroke-width="0.6" fill="none" opacity="0.08"/>
+      <path d="M0 290 C180 310 360 278 540 295 C720 312 900 285 1080 300 C1260 315 1380 295 1440 305" stroke="#2ab0ac" stroke-width="0.6" fill="none" opacity="0.08"/>
+      <!-- Corner root whispers -->
+      <path d="M0 700 C55 658 95 628 132 594" stroke="#2e1a0b" stroke-width="2" fill="none" opacity="0.35"/>
+      <path d="M1440 700 C1385 655 1345 625 1308 592" stroke="#2e1a0b" stroke-width="2" fill="none" opacity="0.35"/>
+      <!-- Gold star points — sacred independence -->
+      <circle cx="240" cy="80" r="1.5" fill="#c9a96e" opacity="0.3"/>
+      <circle cx="720" cy="60" r="2" fill="#c9a96e" opacity="0.28"/>
+      <circle cx="1200" cy="80" r="1.5" fill="#c9a96e" opacity="0.3"/>
+      <circle cx="480" cy="100" r="1" fill="#c9a96e" opacity="0.2"/>
+      <circle cx="960" cy="95" r="1" fill="#c9a96e" opacity="0.2"/>
+    </svg>
+  </div>
+  <div class="container">
+    <div class="independence-inner">
+      <div>
+        <span class="section-label">Our faith and independence</span>
+        <h2 class="section-heading">
+          Answering to no external authority — only to <em>life itself</em>
+        </h2>
+        <div class="divider"></div>
+        <p class="body-text">
+          The Naluʻea Planetary Stewardship Ministry is an independent religious body. It answers to no external institution — only to the principles upon which it was founded and to the living Earth it exists to serve.
+        </p>
+        <p class="body-text">
+          Spiritual remembrance transcends denominations and unites traditions. This is a gathering place for those who feel that call — in whatever form it has found them.
+        </p>
+        <p class="body-text">
+          The Ministry may collaborate with aligned organizations in furtherance of its religious mission. But its spiritual integrity, its doctrine, and its ceremonial life are held entirely within itself — protected, tended, and carried with care.
+        </p>
+        <blockquote class="independence-quote">
+          "Ceremony restores coherence between humanity and Source. Regenerative action is a form of prayer. Sacred reciprocity governs all flows of life."
+        </blockquote>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:1.5rem;">
+        <div style="border:1px solid var(--earth-bark); padding:2rem;">
+          <p style="font-size:0.68rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--teal-bright); margin-bottom:1rem;">Established</p>
+          <p style="font-family:var(--font-display); font-size:1.05rem; color:var(--cream-dim); line-height:1.7;">February 18, 2026 — as a non-denominational, interfaith religious body in the State of Wyoming.</p>
+        </div>
+        <div style="border:1px solid var(--earth-bark); padding:2rem;">
+          <p style="font-size:0.68rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--teal-bright); margin-bottom:1rem;">Our nature</p>
+          <p style="font-family:var(--font-display); font-size:1.05rem; color:var(--cream-dim); line-height:1.7;">A church in the fullest sense — grounded in the recognition that the Earth is living and sacred, that stewardship is a spiritual practice, and that ceremony is governance in spiritual form.</p>
+        </div>
+        <div style="border:1px solid var(--earth-bark); padding:2rem;">
+          <p style="font-size:0.68rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--teal-bright); margin-bottom:1rem;">Tax status</p>
+          <p style="font-family:var(--font-display); font-size:1.05rem; color:var(--cream-dim); line-height:1.7;">Recognized as a religious nonprofit. Gifts to the Ministry are tax-deductible to the extent permitted by law.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUPPORT -->
+<section class="support">
+  <div class="section-art" aria-hidden="true">
+    <svg viewBox="0 0 1440 500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <!-- Concentric ripples — gift entering the field -->
+      <circle cx="720" cy="250" r="220" stroke="#2ab0ac" stroke-width="0.8" fill="none" opacity="0.08"/>
+      <circle cx="720" cy="250" r="170" stroke="#2ab0ac" stroke-width="0.7" fill="none" opacity="0.07"/>
+      <circle cx="720" cy="250" r="120" stroke="#2ab0ac" stroke-width="0.6" fill="none" opacity="0.06"/>
+      <circle cx="720" cy="250" r="70" stroke="#2ab0ac" stroke-width="0.5" fill="none" opacity="0.05"/>
+      <!-- Wave lines -->
+      <path d="M0 150 C240 130 480 152 720 138 C960 124 1200 145 1440 132" stroke="#2ab0ac" stroke-width="0.7" fill="none" opacity="0.1"/>
+      <path d="M0 380 C240 362 480 378 720 365 C960 352 1200 368 1440 356" stroke="#2ab0ac" stroke-width="0.7" fill="none" opacity="0.1"/>
+    </svg>
+  </div>
+  <div class="container-narrow">
+    <span class="section-label" style="text-align:center; display:block;">Support our work</span>
+    <h2 class="section-heading" style="text-align:center;">
+      This work is sustained by those<br>who feel <em>called</em>
+    </h2>
+    <div class="divider-center"></div>
+    <p class="support-body">
+      Your contribution supports gatherings, ceremony, and the cultivation of communities rooted in care for the Earth and future generations. It helps create the conditions where people can come together, where relationships can deepen, and where new ways of living in right relationship can take root.
+    </p>
+    <p class="support-body">
+      Each gift becomes part of something larger — a growing field of stewardship, carried by many, held in <strong>sacred trust</strong> for the generations to come.
+    </p>
+    <p class="support-body" style="font-family:var(--font-display); font-style:italic; font-size:1.05rem;">
+      If you feel resonance, we welcome your support.
+    </p>
+    <br>
+    <a href="donate.html" class="btn btn-primary">An Offering to What Is Sacred</a>
+    <a href="contact.html" class="btn btn-ghost">Reach Out</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-wordmark">Naluʻea Planetary Stewardship Ministry</p>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="donate.html">Offer</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="privacy.html">Privacy</a></li>
+  </ul>
+  <p class="footer-address">1621 Central Ave, #8450 · Cheyenne, WY 82001 · info@naluea.com</p>
+  <p class="footer-domain">nalueaministry.earth · 2026</p>
+</footer>
+
+</body>
+</html>
