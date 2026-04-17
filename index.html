@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naluʻea Planetary Stewardship Ministry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --earth-deep:    #0f0a06;
+    --earth-mid:     #1c110a;
+    --earth-warm:    #2e1a0b;
+    --earth-bark:    #4a2c10;
+    --teal-deep:     #0d3d3a;
+    --teal-mid:      #156866;
+    --teal-bright:   #2ab0ac;
+    --teal-light:    #7dd4d1;
+    --gold:          #c9a96e;
+    --gold-soft:     #e8d5a3;
+    --cream:         #f5f0e8;
+    --cream-dim:     #d4cbbf;
+    --white-warm:    #fdf9f4;
+    --font-display:  'Cormorant Garamond', Georgia, serif;
+    --font-body:     'Jost', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--earth-deep);
+    color: var(--cream);
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO IMAGE LAYER ── */
+  /* To use your own banner image, place it in the same folder as this file
+     and replace 'hero-banner.png' below with your image filename.
+     The SVG layer will show as a fallback if no image is present. */
+  .hero-img-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-image: url('./hero-banner.png');
+    background-size: cover;
+    background-position: center left;
+    opacity: 0.72;
+  }
+  .hero-img-layer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(15,10,6,0.35) 0%,
+      rgba(15,10,6,0.18) 40%,
+      rgba(15,10,6,0.55) 80%,
+      rgba(15,10,6,0.85) 100%
+    );
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4rem 3rem;
+    background: transparent;
+    transition: background 0.5s ease;
+  }
+  nav.scrolled {
+    background: rgba(15, 10, 6, 0.92);
+    backdrop-filter: blur(8px);
+  }
+  .nav-wordmark {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: var(--gold-soft);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--teal-light); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    padding: 6rem 2rem 4rem;
+  }
+
+  /* Layered water/earth background */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+  }
+  .hero-bg svg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+  }
+
+  /* Animated water shimmer */
+  @keyframes shimmer {
+    0%   { transform: translateX(0); opacity: 0.4; }
+    50%  { transform: translateX(12px); opacity: 0.7; }
+    100% { transform: translateX(0); opacity: 0.4; }
+  }
+  @keyframes shimmer2 {
+    0%   { transform: translateX(0); opacity: 0.3; }
+    50%  { transform: translateX(-10px); opacity: 0.6; }
+    100% { transform: translateX(0); opacity: 0.3; }
+  }
+  @keyframes pulse-orb {
+    0%, 100% { opacity: 0.18; transform: scale(1); }
+    50%       { opacity: 0.28; transform: scale(1.06); }
+  }
+  @keyframes drift {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-8px); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes spiralDraw {
+    from { stroke-dashoffset: 400; }
+    to   { stroke-dashoffset: 0; }
+  }
+
+  .shimmer-line { animation: shimmer 6s ease-in-out infinite; }
+  .shimmer-line-2 { animation: shimmer2 8s ease-in-out infinite; }
+  .pulse-orb { animation: pulse-orb 5s ease-in-out infinite; }
+  .spiral-path {
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    animation: spiralDraw 3s ease-out 1.5s forwards;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 780px;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--teal-bright);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeIn 1s ease 0.3s forwards;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 6vw, 5.2rem);
+    font-weight: 300;
+    line-height: 1.12;
+    color: var(--white-warm);
+    margin-bottom: 1.2rem;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.6s forwards;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-soft);
+  }
+
+  .hero-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--teal-mid);
+    margin: 1.8rem auto;
+    opacity: 0;
+    animation: fadeIn 1s ease 1.2s forwards;
+  }
+
+  .hero-sub {
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--cream-dim);
+    line-height: 1.7;
+    max-width: 580px;
+    margin: 0 auto 2.8rem;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 1.4s forwards;
+  }
+
+  .hero-body {
+    font-size: 0.95rem;
+    color: var(--cream-dim);
+    max-width: 520px;
+    margin: 0 auto 3rem;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 1.8s forwards;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 2.2s forwards;
+  }
+
+  .btn {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.9rem 2.2rem;
+    border-radius: 0;
+    transition: all 0.35s ease;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--teal-mid);
+    color: var(--white-warm);
+    border: 1px solid var(--teal-mid);
+  }
+  .btn-primary:hover {
+    background: var(--teal-bright);
+    border-color: var(--teal-bright);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--gold-soft);
+    border: 1px solid var(--gold);
+  }
+  .btn-ghost:hover {
+    background: rgba(201, 169, 110, 0.12);
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeIn 1s ease 3s forwards;
+  }
+  .scroll-indicator span {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--teal-bright);
+    opacity: 0.6;
+  }
+  @keyframes scrollBounce {
+    0%, 100% { transform: translateY(0); opacity: 0.5; }
+    50%       { transform: translateY(6px); opacity: 1; }
+  }
+  .scroll-arrow {
+    width: 1px;
+    height: 32px;
+    background: linear-gradient(to bottom, var(--teal-bright), transparent);
+    animation: scrollBounce 2s ease-in-out infinite;
+  }
+
+  /* ── SECTION BASE ── */
+  section {
+    padding: 7rem 2rem;
+  }
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .container-narrow {
+    max-width: 660px;
+    margin: 0 auto;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--teal-bright);
+    margin-bottom: 1.4rem;
+    display: block;
+  }
+
+  /* ── TODAY SECTION ── */
+  .today {
+    background: var(--earth-mid);
+    position: relative;
+    overflow: hidden;
+  }
+  .today::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--teal-mid), transparent);
+  }
+  .today-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .today-heading {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--white-warm);
+    margin-bottom: 1.5rem;
+  }
+  .today-heading em {
+    font-style: italic;
+    color: var(--gold-soft);
+  }
+  .today-text {
+    color: var(--cream-dim);
+    font-size: 0.95rem;
+    line-height: 1.85;
+    margin-bottom: 1.2rem;
+  }
+  .today-accent {
+    width: 40px;
+    height: 2px;
+    background: var(--teal-mid);
+    margin: 2rem 0;
+  }
+
+  /* Faith pillars */
+  .faith-pillars {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .pillar {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+  }
+  .pillar-mark {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--teal-bright);
+    flex-shrink: 0;
+    margin-top: 0.55rem;
+  }
+  .pillar-text {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--cream-dim);
+    line-height: 1.6;
+  }
+
+  /* ── WHAT WE DO ── */
+  .what-we-do {
+    background: var(--earth-deep);
+    text-align: center;
+    position: relative;
+  }
+  .what-we-do::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--earth-bark), transparent);
+  }
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 300;
+    color: var(--white-warm);
+    margin-bottom: 1rem;
+    line-height: 1.25;
+  }
+  .section-heading em { font-style: italic; color: var(--gold-soft); }
+  .section-intro {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--cream-dim);
+    margin-bottom: 4rem;
+    line-height: 1.7;
+  }
+
+  .practices-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--earth-bark);
+    border: 1px solid var(--earth-bark);
+    margin-top: 3rem;
+  }
+  .practice-card {
+    background: var(--earth-mid);
+    padding: 2.5rem 2rem;
+    text-align: left;
+    transition: background 0.3s ease;
+  }
+  .practice-card:hover {
+    background: var(--earth-warm);
+  }
+  .practice-glyph {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    color: var(--teal-bright);
+    margin-bottom: 1rem;
+    opacity: 0.7;
+  }
+  .practice-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--white-warm);
+    margin-bottom: 0.7rem;
+  }
+  .practice-desc {
+    font-size: 0.88rem;
+    color: var(--cream-dim);
+    line-height: 1.75;
+  }
+
+  /* ── TURNING QUOTE ── */
+  .turning {
+    background: var(--teal-deep);
+    text-align: center;
+    padding: 6rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .turning::before, .turning::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--teal-bright), transparent);
+    opacity: 0.3;
+  }
+  .turning::before { top: 0; }
+  .turning::after  { bottom: 0; }
+
+  .turning-quote {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--white-warm);
+    line-height: 1.5;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+  }
+  .turning-sub {
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    opacity: 0.7;
+  }
+
+  /* ── SUPPORT ── */
+  .support {
+    background: var(--earth-mid);
+    position: relative;
+  }
+  .support::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--teal-mid), transparent);
+  }
+  .support-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .support-text .section-heading {
+    text-align: left;
+  }
+  .support-body {
+    font-size: 0.95rem;
+    color: var(--cream-dim);
+    line-height: 1.85;
+    margin-bottom: 1.2rem;
+  }
+  .support-body strong {
+    color: var(--gold-soft);
+    font-weight: 400;
+  }
+  .support-aside {
+    border-left: 1px solid var(--teal-mid);
+    padding-left: 2.5rem;
+  }
+  .support-quote {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--cream-dim);
+    line-height: 1.65;
+    margin-bottom: 2rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--earth-deep);
+    border-top: 1px solid var(--earth-bark);
+    padding: 3.5rem 2rem;
+    text-align: center;
+  }
+  .footer-wordmark {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--gold-soft);
+    letter-spacing: 0.12em;
+    margin-bottom: 1rem;
+  }
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    list-style: none;
+    margin-bottom: 1.5rem;
+  }
+  .footer-links a {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--teal-light); }
+  .footer-address {
+    font-size: 0.78rem;
+    color: var(--earth-bark);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+  }
+  .footer-domain {
+    font-size: 0.72rem;
+    color: var(--teal-mid);
+    letter-spacing: 0.15em;
+  }
+
+
+  /* ── SYMBOLIC BACKGROUND ART ── */
+  .section-art {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .section-art svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  /* ensure section content sits above art */
+  .today .container,
+  .what-we-do .container,
+  .support .container-narrow,
+  .turning .container-narrow {
+    position: relative;
+    z-index: 1;
+  }
+  .today, .what-we-do, .support, .turning {
+    position: relative;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    .today-grid,
+    .support-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .practices-grid { grid-template-columns: 1fr; }
+    section { padding: 5rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="nav-wordmark">Naluʻea Ministry</a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="donate.html">Offer</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img-layer" aria-hidden="true"></div>
+  <div class="hero-bg" aria-hidden="true">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <!-- Deep earth -->
+      <rect width="1440" height="900" fill="#0f0a06"/>
+      <!-- Earth layers -->
+      <ellipse cx="720" cy="980" rx="900" ry="380" fill="#1c110a"/>
+      <ellipse cx="360" cy="960" rx="600" ry="320" fill="#2e1a0b" opacity="0.7"/>
+      <ellipse cx="1100" cy="970" rx="560" ry="300" fill="#261408" opacity="0.6"/>
+      <!-- Water layers -->
+      <path d="M0 480 C180 440 360 500 540 465 C720 430 900 410 1080 440 C1260 470 1360 450 1440 420 L1440 0 L0 0 Z" fill="#0d3d3a"/>
+      <path d="M0 510 C200 468 400 505 600 478 C800 451 1000 435 1200 462 C1340 480 1400 465 1440 450 L1440 0 L0 0 Z" fill="#0f4845"/>
+      <path d="M0 540 C220 496 440 528 660 500 C880 472 1080 455 1280 483 C1380 497 1420 482 1440 472 L1440 0 L0 0 Z" fill="#125756"/>
+      <path d="M0 565 C240 520 460 552 680 524 C900 496 1100 478 1300 506 C1390 520 1425 505 1440 496 L1440 0 L0 0 Z" fill="#156866"/>
+      <path d="M0 588 C260 542 480 575 700 547 C920 519 1120 502 1320 530 C1400 544 1430 530 1440 522 L1440 0 L0 0 Z" fill="#187a78" opacity="0.8"/>
+      <!-- Shimmer lines -->
+      <path class="shimmer-line" d="M120 320 C200 308 280 325 360 315" stroke="#2ab0ac" stroke-width="1.2" fill="none" opacity="0.5"/>
+      <path class="shimmer-line-2" d="M500 290 C600 278 700 296 800 284" stroke="#2ab0ac" stroke-width="1" fill="none" opacity="0.4"/>
+      <path class="shimmer-line" d="M900 305 C1000 293 1100 311 1200 300" stroke="#3abfbb" stroke-width="1" fill="none" opacity="0.4"/>
+      <path class="shimmer-line-2" d="M200 355 C290 343 380 360 470 350" stroke="#2ab0ac" stroke-width="0.8" fill="none" opacity="0.35"/>
+      <path class="shimmer-line" d="M680 338 C760 326 840 344 920 334" stroke="#3abfbb" stroke-width="0.8" fill="none" opacity="0.35"/>
+      <!-- Sacred orb at horizon -->
+      <ellipse class="pulse-orb" cx="720" cy="555" rx="180" ry="55" fill="#187a78"/>
+      <ellipse class="pulse-orb" cx="720" cy="555" rx="100" ry="32" fill="#2ab0ac" style="animation-delay:0.8s"/>
+      <ellipse class="pulse-orb" cx="720" cy="555" rx="44" ry="16" fill="#3abfbb" style="animation-delay:1.4s"/>
+      <!-- Spiral forms -->
+      <path class="spiral-path" d="M720 555 C720 530 735 515 752 515 C769 515 782 528 782 545 C782 568 765 586 742 590 C712 594 686 577 682 552 C677 520 697 492 724 486" stroke="#2ab0ac" stroke-width="1.5" fill="none"/>
+      <path class="spiral-path" d="M340 440 C340 428 348 420 357 420 C366 420 374 428 374 437 C374 450 364 460 351 463 C334 466 320 456 318 443" stroke="#1e8a87" stroke-width="1" fill="none" style="animation-delay:2s"/>
+      <path class="spiral-path" d="M1100 420 C1100 408 1108 400 1117 400 C1126 400 1134 408 1134 417 C1134 430 1124 440 1111 443 C1094 446 1080 436 1078 423" stroke="#1e8a87" stroke-width="1" fill="none" style="animation-delay:2.4s"/>
+      <!-- Root forms -->
+      <path d="M720 700 C700 650 665 620 630 580 C605 552 578 535 550 515" stroke="#3d2410" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+      <path d="M720 700 C740 648 778 618 812 580 C838 552 865 536 892 518" stroke="#3d2410" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
+      <path d="M720 700 C718 660 715 638 710 612 C705 588 698 568 693 545" stroke="#4a2c10" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/>
+      <!-- Stars -->
+      <circle cx="160" cy="120" r="1.5" fill="#2ab0ac" opacity="0.7"/>
+      <circle cx="280" cy="80" r="1" fill="#3abfbb" opacity="0.6"/>
+      <circle cx="440" cy="100" r="1.5" fill="#2ab0ac" opacity="0.65"/>
+      <circle cx="600" cy="60" r="1" fill="#c9a96e" opacity="0.5"/>
+      <circle cx="720" cy="90" r="2" fill="#2ab0ac" opacity="0.7"/>
+      <circle cx="860" cy="50" r="1" fill="#3abfbb" opacity="0.55"/>
+      <circle cx="1000" cy="78" r="1.5" fill="#2ab0ac" opacity="0.65"/>
+      <circle cx="1160" cy="65" r="1" fill="#c9a96e" opacity="0.5"/>
+      <circle cx="1300" cy="95" r="1.5" fill="#2ab0ac" opacity="0.6"/>
+      <circle cx="380" cy="145" r="1" fill="#c9a96e" opacity="0.4"/>
+      <circle cx="980" cy="135" r="1" fill="#c9a96e" opacity="0.4"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Naluʻea Planetary Stewardship Ministry</p>
+    <h1 class="hero-title">
+      Step Into<br><em>The Great Turning</em>
+    </h1>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">
+      The world is not broken.<br>It is waiting to be held.
+    </p>
+    <p class="hero-body">
+      Across the Earth, hearts are awakening to a deeper responsibility — to one another, to the living land, to the waters, and to the generations not yet born. We are a sacred gathering place, established in the knowing that the Earth is living and sacred, that stewardship is a spiritual practice, and that ceremony is governance in its most truthful form.
+    </p>
+    <div class="hero-cta">
+      <a href="about.html" class="btn btn-primary">Enter</a>
+      <a href="donate.html" class="btn btn-ghost">Offer a Gift</a>
+    </div>
+  </div>
+
+  <div class="scroll-indicator" aria-hidden="true">
+    <span>Descend</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- TODAY -->
+<section class="today">
+  <div class="section-art" aria-hidden="true">
+    <svg viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <!-- Faint root forms bottom left -->
+      <path d="M0 600 C60 540 100 500 140 460 C170 430 200 410 230 380" stroke="#2e1a0b" stroke-width="3" fill="none" opacity="0.5"/>
+      <path d="M0 600 C80 560 130 530 170 490 C200 460 220 430 250 400" stroke="#2e1a0b" stroke-width="2" fill="none" opacity="0.35"/>
+      <path d="M0 600 C40 570 70 550 100 520 C130 490 155 465 175 435" stroke="#3d2410" stroke-width="1.5" fill="none" opacity="0.3"/>
+      <path d="M50 600 C90 565 120 540 155 510" stroke="#3d2410" stroke-width="1.2" fill="none" opacity="0.25"/>
+      <!-- Faint root forms bottom right -->
+      <path d="M1440 600 C1380 545 1340 510 1300 472" stroke="#2e1a0b" stroke-width="2.5" fill="none" opacity="0.45"/>
+      <path d="M1440 600 C1360 558 1310 525 1270 485" stroke="#3d2410" stroke-width="1.8" fill="none" opacity="0.3"/>
+      <path d="M1390 600 C1340 568 1305 540 1268 505" stroke="#2e1a0b" stroke-width="1.4" fill="none" opacity="0.25"/>
+      <!-- Very faint water spiral left -->
+      <path d="M220 300 C220 272 236 256 254 256 C272 256 288 272 288 290 C288 315 270 333 248 337 C218 341 192 323 188 298 C183 265 202 236 230 229" stroke="#156866" stroke-width="1" fill="none" opacity="0.18"/>
+      <!-- Very faint water spiral right -->
+      <path d="M1180 280 C1180 260 1193 247 1207 247 C1221 247 1234 260 1234 274 C1234 294 1220 308 1203 311 C1180 315 1160 301 1158 284" stroke="#156866" stroke-width="1" fill="none" opacity="0.15"/>
+    </svg>
+  </div>
+  <div class="container">
+    <div class="today-grid">
+      <div>
+        <span class="section-label">Our today</span>
+        <h2 class="today-heading">
+          A sacred gathering place<br>for those who feel<br><em>this call</em>
+        </h2>
+        <div class="today-accent"></div>
+        <p class="today-text">
+          We come together in ceremony, in prayer, in reflection, and in shared commitment. We remember that stewardship is a vow. We hold space for the remembering that moves through all traditions and belongs to none alone.
+        </p>
+        <p class="today-text">
+          Here, we honor the wisdom of the past, the needs of the present, and the rights of the future. The balance of the Divine Feminine and the Divine Masculine is holy here. The wisdom of elders and the vision of the young are both essential.
+        </p>
+        <p class="today-text">
+          The Great Turning is not an idea. It is a choice — made quietly, daily, in ceremony and in action, together. If you feel the Waters shifting, you are not alone.
+        </p>
+      </div>
+      <div>
+        <span class="section-label">What we believe</span>
+        <div class="faith-pillars">
+          <div class="pillar">
+            <div class="pillar-mark"></div>
+            <p class="pillar-text">The Earth is living and sacred.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-mark"></div>
+            <p class="pillar-text">Stewardship is a spiritual practice.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-mark"></div>
+            <p class="pillar-text">The balance of Divine Feminine and Divine Masculine is holy.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-mark"></div>
+            <p class="pillar-text">The Light Child within every being carries divine remembrance.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-mark"></div>
+            <p class="pillar-text">Regeneration, reciprocity, and right relationship are sacred obligations.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-mark"></div>
+            <p class="pillar-text">Ceremony is governance in spiritual form.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-mark"></div>
+            <p class="pillar-text">Regenerative action is a form of prayer.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-mark"></div>
+            <p class="pillar-text">Sacred reciprocity governs all flows of life.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section class="what-we-do">
+  <div class="section-art" aria-hidden="true">
+    <svg viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <!-- Large faint spiral center -->
+      <path d="M720 350 C720 310 748 282 778 282 C808 282 836 310 836 340 C836 380 806 410 766 416 C714 422 670 390 664 348 C656 294 688 248 738 238 C796 226 848 258 858 318" stroke="#156866" stroke-width="1.2" fill="none" opacity="0.12"/>
+      <path d="M720 350 C720 295 758 260 798 260 C838 260 874 294 874 334 C874 386 840 422 792 428 C728 436 672 400 664 344" stroke="#0d3d3a" stroke-width="0.8" fill="none" opacity="0.1"/>
+      <!-- Small spirals flanking -->
+      <path d="M280 200 C280 185 290 175 301 175 C312 175 322 185 322 196 C322 211 310 222 296 224 C278 227 263 216 261 202" stroke="#156866" stroke-width="0.8" fill="none" opacity="0.12"/>
+      <path d="M1160 220 C1160 205 1170 195 1181 195 C1192 195 1202 205 1202 216 C1202 231 1190 242 1176 244 C1158 247 1143 236 1141 222" stroke="#156866" stroke-width="0.8" fill="none" opacity="0.12"/>
+      <!-- Faint mycelial threads -->
+      <path d="M0 450 C120 420 240 440 360 415 C480 390 600 405 720 395 C840 385 960 400 1080 380 C1200 360 1320 375 1440 355" stroke="#1c110a" stroke-width="1" fill="none" opacity="0.4"/>
+      <path d="M0 480 C140 455 280 470 420 448 C560 426 700 440 840 430 C980 420 1120 435 1260 418 C1340 410 1400 415 1440 410" stroke="#1c110a" stroke-width="0.8" fill="none" opacity="0.3"/>
+      <!-- Corner root whispers -->
+      <path d="M0 700 C50 660 90 630 125 595" stroke="#2e1a0b" stroke-width="2" fill="none" opacity="0.3"/>
+      <path d="M1440 700 C1390 655 1350 625 1315 592" stroke="#2e1a0b" stroke-width="2" fill="none" opacity="0.3"/>
+    </svg>
+  </div>
+  <div class="container">
+    <span class="section-label" style="text-align:center; display:block;">What we do</span>
+    <h2 class="section-heading">
+      We gather. We tend. We <em>remember.</em>
+    </h2>
+    <p class="section-intro">
+      Through ceremony, circle, and shared practice — across seasons, across generations.
+    </p>
+    <div class="practices-grid">
+      <div class="practice-card">
+        <div class="practice-glyph">✦</div>
+        <h3 class="practice-title">Ceremony at the Thresholds</h3>
+        <p class="practice-desc">Seasonal sacred ceremony, monthly gathering, and the tending of the relational field — the conditions that must come before anything else is built.</p>
+      </div>
+      <div class="practice-card">
+        <div class="practice-glyph">∿</div>
+        <h3 class="practice-title">Circles Across Generations</h3>
+        <p class="practice-desc">Women's circles, children's spiritual formation, and intergenerational dialogue — where elder memory meets the vision of the young.</p>
+      </div>
+      <div class="practice-card">
+        <div class="practice-glyph">⌾</div>
+        <h3 class="practice-title">Consecration of Land &amp; Water</h3>
+        <p class="practice-desc">Ritual blessing of specific places, honoring the living intelligence of the Earth and the sacred obligations of those who tend it.</p>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:2.5rem;">
+      <a href="about.html" class="btn btn-ghost">Learn more about our work</a>
+    </p>
+  </div>
+</section>
+
+<!-- TURNING QUOTE -->
+<section class="turning">
+  <div class="section-art" aria-hidden="true">
+    <svg viewBox="0 0 1440 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <!-- Concentric wave arcs — like nalu on the shore -->
+      <path d="M0 300 C240 260 480 290 720 270 C960 250 1200 278 1440 255" stroke="#2ab0ac" stroke-width="0.8" fill="none" opacity="0.12"/>
+      <path d="M0 320 C240 280 480 312 720 290 C960 268 1200 298 1440 275" stroke="#2ab0ac" stroke-width="0.8" fill="none" opacity="0.09"/>
+      <path d="M0 340 C240 300 480 332 720 310 C960 288 1200 318 1440 295" stroke="#2ab0ac" stroke-width="0.8" fill="none" opacity="0.07"/>
+      <!-- Central sacred geometry — double spiral -->
+      <path d="M720 200 C720 178 733 164 747 164 C761 164 774 177 774 191 C774 210 761 224 745 226 C724 229 706 215 704 196 C701 172 716 152 738 148" stroke="#2ab0ac" stroke-width="1" fill="none" opacity="0.2"/>
+      <!-- Scattered star points -->
+      <circle cx="200" cy="80" r="1.5" fill="#2ab0ac" opacity="0.25"/>
+      <circle cx="380" cy="50" r="1" fill="#c9a96e" opacity="0.2"/>
+      <circle cx="560" cy="90" r="1.5" fill="#2ab0ac" opacity="0.22"/>
+      <circle cx="880" cy="55" r="1.5" fill="#2ab0ac" opacity="0.22"/>
+      <circle cx="1060" cy="85" r="1" fill="#c9a96e" opacity="0.2"/>
+      <circle cx="1240" cy="70" r="1.5" fill="#2ab0ac" opacity="0.25"/>
+    </svg>
+  </div>
+  <div class="container-narrow">
+    <p class="turning-quote">
+      "The Great Turning is not an idea.<br>It is a choice — made quietly, daily,<br>in ceremony and in action, together."
+    </p>
+    <p class="turning-sub">Naluʻea Planetary Stewardship Ministry</p>
+  </div>
+</section>
+
+<!-- SUPPORT -->
+<section class="support">
+  <div class="container-narrow" style="text-align:center;">
+    <span class="section-label" style="display:block;">Support our work</span>
+    <h2 class="section-heading">
+      This work is sustained by those<br>who feel <em>called</em>
+    </h2>
+    <p class="support-body" style="max-width:520px; margin:1.5rem auto 2.5rem;">
+      Each gift becomes part of something larger — a growing field of stewardship, carried by many, held in sacred trust for the generations to come. If you feel resonance, we welcome your offering.
+    </p>
+    <a href="donate.html" class="btn btn-primary">An Offering to What Is Sacred</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-wordmark">Naluʻea Planetary Stewardship Ministry</p>
+  <ul class="footer-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="donate.html">Offer</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="privacy.html">Privacy</a></li>
+  </ul>
+  <p class="footer-address">1621 Central Ave, #8450 · Cheyenne, WY 82001 · info@naluea.com</p>
+  <p class="footer-domain">nalueaministry.earth · 2026</p>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+</script>
+</body>
+</html>
