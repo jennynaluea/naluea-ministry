@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You — Naluʻea Planetary Stewardship Ministry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --earth-deep:    #0f0a06;
+    --earth-mid:     #1c110a;
+    --earth-warm:    #2e1a0b;
+    --earth-bark:    #4a2c10;
+    --teal-deep:     #0d3d3a;
+    --teal-mid:      #156866;
+    --teal-bright:   #2ab0ac;
+    --teal-light:    #7dd4d1;
+    --gold:          #c9a96e;
+    --gold-soft:     #e8d5a3;
+    --cream:         #f5f0e8;
+    --cream-dim:     #d4cbbf;
+    --white-warm:    #fdf9f4;
+    --font-display:  'Cormorant Garamond', Georgia, serif;
+    --font-body:     'Jost', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--earth-deep);
+    color: var(--cream);
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.75;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4rem 3rem;
+    background: rgba(15, 10, 6, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(74, 44, 16, 0.3);
+  }
+  .nav-wordmark {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: var(--gold-soft);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--teal-light); }
+
+  /* ── MAIN ── */
+  main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Symbolic art background */
+  .bg-art {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .bg-art svg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes spiralDraw {
+    from { stroke-dashoffset: 600; }
+    to   { stroke-dashoffset: 0; }
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 620px;
+  }
+
+  .glyph {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    animation: fadeIn 1.5s ease 0.3s both;
+  }
+
+  .heading {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+    font-weight: 300;
+    color: var(--white-warm);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 1.2s ease 0.5s both;
+  }
+  .heading em {
+    font-style: italic;
+    color: var(--gold-soft);
+  }
+
+  .divider {
+    width: 48px;
+    height: 1px;
+    background: var(--teal-mid);
+    margin: 2rem auto;
+    animation: fadeIn 1s ease 1s both;
+  }
+
+  .message {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--cream-dim);
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 1.2s ease 1.2s both;
+  }
+
+  .sub-message {
+    font-size: 0.88rem;
+    color: var(--cream-dim);
+    opacity: 0.7;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    animation: fadeUp 1.2s ease 1.5s both;
+  }
+
+  .btn-group {
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeUp 1.2s ease 1.8s both;
+  }
+
+  .btn {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.9rem 2.2rem;
+    transition: all 0.35s ease;
+    cursor: pointer;
+    border-radius: 0;
+  }
+  .btn-primary {
+    background: var(--teal-mid);
+    color: var(--white-warm);
+    border: 1px solid var(--teal-mid);
+  }
+  .btn-primary:hover { background: var(--teal-bright); border-color: var(--teal-bright); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--gold-soft);
+    border: 1px solid var(--gold);
+  }
+  .btn-ghost:hover { background: rgba(201,169,110,0.12); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--earth-deep);
+    border-top: 1px solid var(--earth-bark);
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+  .footer-wordmark {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--gold-soft);
+    letter-spacing: 0.12em;
+    margin-bottom: 0.8rem;
+  }
+  .footer-domain {
+    font-size: 0.72rem;
+    color: var(--teal-mid);
+    letter-spacing: 0.15em;
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-wordmark">Naluʻea Ministry</a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="donate.html">Offer</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- MAIN -->
+<main>
+  <div class="bg-art" aria-hidden="true">
+    <svg viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <!-- Deep earth base -->
+      <rect width="1440" height="800" fill="#0f0a06"/>
+      <!-- Water layers -->
+      <path d="M0 500 C240 468 480 492 720 472 C960 452 1200 476 1440 458 L1440 0 L0 0 Z" fill="#0d3d3a" opacity="0.4"/>
+      <path d="M0 530 C240 498 480 522 720 502 C960 482 1200 506 1440 488 L1440 0 L0 0 Z" fill="#0f4845" opacity="0.3"/>
+      <!-- Root forms -->
+      <path d="M0 800 C80 748 130 715 175 672" stroke="#2e1a0b" stroke-width="2.5" fill="none" opacity="0.4"/>
+      <path d="M1440 800 C1360 748 1310 715 1265 672" stroke="#2e1a0b" stroke-width="2.5" fill="none" opacity="0.4"/>
+      <path d="M720 800 C715 755 710 725 704 690" stroke="#2e1a0b" stroke-width="2" fill="none" opacity="0.3"/>
+      <!-- Large sacred spiral — drawn in -->
+      <path
+        d="M720 400 C720 358 748 330 778 330 C808 330 836 358 836 388 C836 428 806 458 766 464 C714 470 668 438 662 396 C654 340 688 292 740 280 C800 266 856 298 868 358"
+        stroke="#2ab0ac" stroke-width="1.2" fill="none" opacity="0.2"
+        style="stroke-dasharray:600; stroke-dashoffset:600; animation: spiralDraw 3s ease 0.8s forwards;"/>
+      <!-- Smaller spirals -->
+      <path d="M280 350 C280 335 290 325 301 325 C312 325 322 335 322 346 C322 361 310 372 296 374 C278 377 263 366 261 352" stroke="#156866" stroke-width="0.8" fill="none" opacity="0.18"/>
+      <path d="M1160 330 C1160 315 1170 305 1181 305 C1192 305 1202 315 1202 326 C1202 341 1190 352 1176 354 C1158 357 1143 346 1141 332" stroke="#156866" stroke-width="0.8" fill="none" opacity="0.18"/>
+      <!-- Star points -->
+      <circle cx="200" cy="120" r="1.5" fill="#c9a96e" opacity="0.3"/>
+      <circle cx="480" cy="80"  r="1"   fill="#2ab0ac" opacity="0.25"/>
+      <circle cx="720" cy="100" r="2"   fill="#c9a96e" opacity="0.28"/>
+      <circle cx="960" cy="85"  r="1"   fill="#2ab0ac" opacity="0.25"/>
+      <circle cx="1240" cy="115" r="1.5" fill="#c9a96e" opacity="0.3"/>
+      <!-- Wave shimmer -->
+      <path d="M120 300 C200 288 280 302 360 292" stroke="#2ab0ac" stroke-width="0.8" fill="none" opacity="0.2"/>
+      <path d="M580 275 C680 263 780 278 880 268" stroke="#2ab0ac" stroke-width="0.8" fill="none" opacity="0.18"/>
+      <path d="M1000 285 C1100 273 1200 288 1300 278" stroke="#2ab0ac" stroke-width="0.7" fill="none" opacity="0.18"/>
+    </svg>
+  </div>
+
+  <div class="content">
+    <div class="glyph" aria-hidden="true">
+      <svg viewBox="0 0 120 40" width="120" height="40" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 28 C14 14 24 8 34 14 C44 20 54 20 64 14 C74 8 84 8 94 14 C104 20 110 24 116 20" stroke="#2ab0ac" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.8"/>
+        <path d="M4 34 C14 20 24 14 34 20 C44 26 54 26 64 20 C74 14 84 14 94 20 C104 26 110 30 116 26" stroke="#156866" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.5"/>
+        <path d="M4 22 C14 8 24 2 34 8 C44 14 54 14 64 8 C74 2 84 2 94 8 C104 14 110 18 116 14" stroke="#2ab0ac" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.3"/>
+      </svg>
+    </div>
+    <h1 class="heading">
+      Your message has been<br>received with <em>reverence</em>
+    </h1>
+    <div class="divider"></div>
+    <p class="message">
+      We hold what you have shared with care.<br>
+      We will be in touch in soul time — not urgency time.
+    </p>
+    <p class="sub-message">
+      Every message that reaches this Ministry enters a living field. Thank you for feeling called to reach out.
+    </p>
+    <div class="btn-group">
+      <a href="index.html" class="btn btn-primary">Return home</a>
+      <a href="donate.html" class="btn btn-ghost">An offering to what is sacred</a>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-wordmark">Naluʻea Planetary Stewardship Ministry</p>
+  <p class="footer-domain">nalueaministry.earth · 2026</p>
+</footer>
+
+</body>
+</html>
